@@ -4,7 +4,7 @@ import Kanban from './components/Kanban';
 import Navbar from './components/Navbar';
 import TodosList from './components/TodosList';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
