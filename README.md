@@ -2,7 +2,7 @@
 
 An application used to simplify the process of making todos and also arranging your todos with kanban board, built with React, JavaScript and Tailwind CSS.
 
-Website is live at [Todos](https://nikhil12377.github.io/Todos/)
+Website is live at [Todos](http://nikhil12377.github.io/TodosApp/)
 
 ## Installation and Setup Instructions
 
