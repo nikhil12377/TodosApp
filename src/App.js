@@ -34,7 +34,7 @@ function App() {
       <Router>
         <Navbar />
         <Switch>
-          <Route exact path="/TodosApp">
+          <Route exact path={["/TodosApp", "/"]}>
             <TodosList />
           </Route>
           <Route exact path="/kanban">
