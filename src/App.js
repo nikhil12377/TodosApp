@@ -21,13 +21,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    const ids = new Set(todos.map(item => item.id));
-    const storedItems = localStorage.getItem("todos");
-    if (storedItems.length > 0 && todos.length > 0) {
-      const storedItemsParsed = JSON.parse(storedItems);
-      const newTodos = [...todos, ...storedItemsParsed.filter(item => !ids.has(item.id))]
-      localStorage.setItem("todos", JSON.stringify(newTodos));
-    }
+    localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos])
   return (
     <div className="App">
