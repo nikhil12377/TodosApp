@@ -1,38 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f5f5f5;
+}
+
 .App {
+  height: 100vh;
+  margin-bottom: -100px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container {
+  margin-left: 120px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container .title,
+.desc,
+button {
+  margin: 8px;
+  padding: 8px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.todos {
+  width: 550px;
+}
+
+.todo {
+  margin: 40px 0px;
+}
+
+.todo .todo-title {
+  width: 268px;
+}
+
+.todo .completed {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+}
+
+.kanban {
+  display: flex;
+  justify-content: center;
+}
+
+.droppable-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.addtodo-container {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.react-datepicker-wrapper {
+  max-width: 120px;
+}
+
+.react-datepicker-wrapper input {
+  width: inherit;
+  --tw-bg-opacity: 1;
+  background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
+  border-radius: 0.25rem;
+}
+
+.react-datepicker-wrapper input:focus {
+  --tw-bg-opacity: 1;
+  background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+}
+
+.material-icons {
+  cursor: pointer;
+}
+
+.material-icons.md-32 {
+  font-size: 32px;
+}
+
+.todo-actions * {
+  padding: 0px 10px;
+}
+
+.form-select {
   color: white;
+  padding: 5px 0px;
+  padding-left: 15px;
+  border-radius: 8%;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.editable-inputs input {
+  padding: 3px;
+  width: 47%;
+  margin: 0px 4px;
 }
