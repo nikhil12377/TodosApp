@@ -97,7 +97,9 @@ export default function TodoItem({ todo }) {
           }}
           value={todo.status}
         >
-          <option value="Created">{todo.status}</option>
+          <option value="Created">
+            {todo.status === "Updated" ? "Updated" : "Created"}
+          </option>
           <option value="In_Progress">In Progress</option>
           <option value="Completed">Completed</option>
         </select>
