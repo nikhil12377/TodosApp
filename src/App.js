@@ -8,17 +8,11 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { loadTodo } from './actions';
 
 function App() {
   const todos = useSelector(state => state.todos);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(loadTodo());
-  }, [])
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));

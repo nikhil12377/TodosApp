@@ -11,9 +11,16 @@ const todoReducer = (state = [], action) => {
                 created_at: date.toString(),
                 due_date: action.payload.dueDate.toString()
             };
-            const newAddTodos = [...state, newTodo];
-            localStorage.setItem("todos", JSON.stringify(newAddTodos));
-            return newAddTodos;
+            if (state === null) {
+                localStorage.setItem("todos", JSON.stringify(newTodo));
+                const newState = [newTodo]
+                return newState;
+            }
+            else {
+                const newAddTodos = [...state, newTodo];
+                localStorage.setItem("todos", JSON.stringify(newAddTodos));
+                return newAddTodos;
+            }
 
         case "DELETE_TODO":
             const newDeleteTodos = state.filter((todo) => todo.id !== action.payload);

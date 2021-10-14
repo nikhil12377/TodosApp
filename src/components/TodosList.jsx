@@ -20,6 +20,7 @@ export default function TodosList() {
   const [desc, setDesc] = useState("");
   const [dueDate, setDueDate] = useState(new Date());
   const today = new Date();
+  console.log(todos);
   return (
     <div className="container flex flex-col items-center m-10">
       <div className="parent-container bg-white ">
@@ -76,12 +77,16 @@ export default function TodosList() {
         </div>
       </div>
       <div className="todos float-left clear-left">
-        {todos === null ? (
-          <h1 style={{ marginTop: "50px" }}>No todos</h1>
+        {todos !== null ? (
+          todos.length !== 0 ? (
+            todos.map((todo, index) => {
+              return <TodoItem key={index} todo={todo} />;
+            })
+          ) : (
+            <h1 style={{ marginTop: "50px" }}>No todos</h1>
+          )
         ) : (
-          todos.map((todo, index) => {
-            return <TodoItem key={index} todo={todo} />;
-          })
+          <h1 style={{ marginTop: "50px" }}>No todos</h1>
         )}
       </div>
     </div>
