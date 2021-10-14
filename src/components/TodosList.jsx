@@ -77,7 +77,7 @@ export default function TodosList() {
       </div>
       <div className="todos float-left clear-left">
         {todos.length === 0 ? (
-          <h1>No todos</h1>
+          <h1 style={{ marginTop: "50px" }}>No todos</h1>
         ) : (
           todos.map((todo, index) => {
             return <TodoItem key={index} todo={todo} />;
