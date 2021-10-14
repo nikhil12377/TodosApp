@@ -34,9 +34,6 @@ function App() {
       <Router>
         <Navbar />
         <Switch>
-          <Route exact path="/">
-            <TodosList />
-          </Route>
           <Route exact path="/TodosApp">
             <TodosList />
           </Route>

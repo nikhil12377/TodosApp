@@ -6,7 +6,7 @@ export default function Navbar() {
     <nav className="flex justify-center flex-wrap bg-black p-2 mb-6 sticky top-0 z-50">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
         <Link
-          to="/"
+          to="/TodosApp"
           className="float-left w-full mr-52 text-center text-xl tracking-tight"
         >
           Todos
