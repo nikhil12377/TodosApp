@@ -54,12 +54,14 @@ const onDragEnd = (result, columns, setColumns, dispatch) => {
 
 export default function Kanban() {
   let todos = useSelector((state) => state.todos);
-  if (todos.length === 0) {
+  if (!localStorage.getItem("todos") && todos.length > 0) {
     todos = JSON.parse(localStorage.getItem("todos"));
   }
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(loadTodo());
+    if (localStorage.getItem("todos")) {
+      dispatch(loadTodo());
+    }
   }, []);
 
   var createdOrUpdatedTodos = [];
@@ -99,78 +101,74 @@ export default function Kanban() {
   const [columns, setColumns] = useState(kanbanColumns);
   return (
     <div className="kanban">
-      {todos !== null ? (
-        todos.length !== 0 ? (
-          <DragDropContext
-            onDragEnd={(result) =>
-              onDragEnd(result, columns, setColumns, dispatch)
-            }
-          >
-            {Object.entries(columns).map(([id, column], index) => {
-              return (
-                <div key={id} className="droppable-container">
-                  <h2>{column.name}</h2>
-                  <div style={{ margin: 8 }}>
-                    <Droppable key={id} droppableId={id}>
-                      {(provided, snapshot) => {
-                        return (
-                          <div
-                            {...provided.droppableProps}
-                            ref={provided.innerRef}
-                            style={{
-                              background: snapshot.isDraggingOver
-                                ? "lightblue"
-                                : "lightgrey",
-                              padding: 4,
-                              width: 250,
-                              minHeight: 500,
-                            }}
-                          >
-                            {column.items.map((item, index) => {
-                              return (
-                                <Draggable
-                                  key={item.id}
-                                  draggableId={item.id}
-                                  index={index}
-                                >
-                                  {(provided, snapshot) => {
-                                    return (
-                                      <div
-                                        ref={provided.innerRef}
-                                        {...provided.draggableProps}
-                                        {...provided.dragHandleProps}
-                                        style={{
-                                          userSelect: "none",
-                                          padding: 16,
-                                          margin: "0 0 8px 0",
-                                          minHeight: "50px",
-                                          backgroundColor: snapshot.isDragging
-                                            ? "rgb(17, 24, 39)"
-                                            : "rgb(55, 65, 81)",
-                                          color: "white",
-                                          ...provided.draggableProps.style,
-                                        }}
-                                      >
-                                        {item.title}
-                                      </div>
-                                    );
-                                  }}
-                                </Draggable>
-                              );
-                            })}
-                            {provided.placeholder}
-                          </div>
-                        );
-                      }}
-                    </Droppable>
-                  </div>
+      {todos.length > 0 && todos !== null ? (
+        <DragDropContext
+          onDragEnd={(result) =>
+            onDragEnd(result, columns, setColumns, dispatch)
+          }
+        >
+          {Object.entries(columns).map(([id, column], index) => {
+            return (
+              <div key={id} className="droppable-container">
+                <h2>{column.name}</h2>
+                <div style={{ margin: 8 }}>
+                  <Droppable key={id} droppableId={id}>
+                    {(provided, snapshot) => {
+                      return (
+                        <div
+                          {...provided.droppableProps}
+                          ref={provided.innerRef}
+                          style={{
+                            background: snapshot.isDraggingOver
+                              ? "lightblue"
+                              : "lightgrey",
+                            padding: 4,
+                            width: 250,
+                            minHeight: 500,
+                          }}
+                        >
+                          {column.items.map((item, index) => {
+                            return (
+                              <Draggable
+                                key={item.id}
+                                draggableId={item.id}
+                                index={index}
+                              >
+                                {(provided, snapshot) => {
+                                  return (
+                                    <div
+                                      ref={provided.innerRef}
+                                      {...provided.draggableProps}
+                                      {...provided.dragHandleProps}
+                                      style={{
+                                        userSelect: "none",
+                                        padding: 16,
+                                        margin: "0 0 8px 0",
+                                        minHeight: "50px",
+                                        backgroundColor: snapshot.isDragging
+                                          ? "rgb(17, 24, 39)"
+                                          : "rgb(55, 65, 81)",
+                                        color: "white",
+                                        ...provided.draggableProps.style,
+                                      }}
+                                    >
+                                      {item.title}
+                                    </div>
+                                  );
+                                }}
+                              </Draggable>
+                            );
+                          })}
+                          {provided.placeholder}
+                        </div>
+                      );
+                    }}
+                  </Droppable>
                 </div>
-              );
-            })}
-          </DragDropContext>
-        ) : (
-          <h1>Add Todos to use kanban</h1>
-        )
+              </div>
+            );
+          })}
+        </DragDropContext>
       ) : (
         <h1>Add Todos to use kanban</h1>
       )}
